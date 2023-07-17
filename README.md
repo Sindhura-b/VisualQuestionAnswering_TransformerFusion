@@ -30,9 +30,7 @@ model. As a part of this model exploration, a comparative analysis of models wit
 **Experiments and Results:**
 Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
-strings and works well on one-word answers.
-
-Models are implemented in jupyter notebbok and training is performed in colab on NVIDIA Tesla T4 and NVIDIA Tesla P100 GPUs.
+strings and works well on one-word answers. Models are implemented in jupyter notebbok and training is performed in colab on NVIDIA Tesla T4 and NVIDIA Tesla P100 GPUs.
 
 For Experiment 1, the linear fusion technique is used with the intermediate dimension of 512, dropout of 0.5, and
 batch size of 32, which are considered as a decent set of parameters, since the output dimension of the transformer encoder is 768 and it is a common practice to start with a batch
