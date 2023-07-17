@@ -12,6 +12,7 @@ The vision and language transformers are fused using the late fusion technique a
 method is chosen because it often gives better performance because errors from multiple models are dealt with independently and hence the errors are uncorrelated. Late fusion
 layers have less complex modality interaction compared to early fusion techniques and hence are easier to train comparatively. I also explored various ways to perform late
 fusion and the ones chosen for implementation and comparative analysis include:
+
 Linear Fusion: This involves the concatenation of image
 and textual features and passing them through a linear layer
 followed by ReLU activation and dropout to generate an
