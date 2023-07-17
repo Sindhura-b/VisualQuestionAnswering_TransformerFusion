@@ -18,6 +18,11 @@ varying batch size and the hidden dimension of RoBERTaViT model with a simple li
 lower batch size and higher intermediate dimensionality are preferred.
 
 ![alt-text-1](https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png) ![alt-text-2](https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png)
+<img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="200" />
+
+<p float="left">
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="100" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="100" /> 
+</p>
 
 For Experiment 2, we took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
 layers are selectively designed to capture rich multi-modal interactions, they performed poorly in comparison to multiplicative fusion and simple linear fusion techniques for the
