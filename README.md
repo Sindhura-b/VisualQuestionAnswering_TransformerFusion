@@ -60,3 +60,9 @@ VisualQuestionAnsweringWithTransformers.
 ipynb. 3
 
 3. https://medium.com/@nithinraok_/visual-question-answering-attention-and-fusion-based-approaches-ebef62fa55aa
+
+4. Zhou Yu, Jun Yu, Jianping Fan, and Dacheng Tao. Multimodal factorized bilinear pooling with co-attention learning
+for visual question answering, 2017.
+
+5. Zhou Yu, Jun Yu, Chenchao Xiang, and Dacheng Tao. Beyond bilinear: Generalized multimodal factorized high-order
+pooling for visual question answering, 2017. 
