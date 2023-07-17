@@ -1,4 +1,4 @@
-Fusing Single Modality Transformers for VQA:
+**Fusing Single Modality Transformers for VQA**
 
 Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
@@ -9,19 +9,14 @@ batch size of 32, which are considered as a decent set of parameters, since the 
 size of 32. Every language transformer (BERT, ALBERT, and RoBERTa) is paired with every other image transformer
 (ViT and BEiT) and trained for 5 epochs. A small learning rate of 5e-5 is chosen since the models are already pretrained and have to be only fine-tuned to the VQA task.
 
-The results of experiment 1 shown in Table 3 suggest
-that RoBERTa-ViT model produces the highest Wu-Palmer
+The results of experiment 1 shown in Table 3 suggest that RoBERTa-ViT model produces the highest Wu-Palmer
 scores, with the second best being RoBERTa-BEiT. However, the performance of both vision transformers paired
-with ALBERT is comparatively low. This could be because
-ALBERT is a light model and higher-quality textual embedding is needed for better scores. Although the model with
-ViT transformer performed best, scores from BEiT pairings
-are better in all other cases. This difference could be because the reported results are over a single seed. Evaluating performance over a set of seeds and averaging could
-prove that BEiT pairings are better since it is pre-trained in
-a self-supervised manner and is proven to be more robust
-compared to ViT. We also conducted some experiments by
+with ALBERT is comparatively low. This could be because ALBERT is a light model and higher-quality textual embedding is needed for better scores. Although the model with
+ViT transformer performed best, scores from BEiT pairings are better in all other cases. This difference could be because the reported results are over a single seed. Evaluating performance over a set of seeds and averaging could
+prove that BEiT pairings are better since it is pre-trained in a self-supervised manner and is proven to be more robust compared to ViT. We also conducted some experiments by
 varying batch size and the hidden dimension of RoBERTaViT model with a simple linear fusion layer. Validation results shown in Fig 11 and 12 (see Appendix) suggest that
-lower batch size and higher intermediate dimensionality are
-preferred.
+lower batch size and higher intermediate dimensionality are preferred.
+
 For Experiment 2, we took the best-performing model
 from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 interesting to notice that even though MFB and MFH
 layers are selectively designed to capture rich multi-modal
