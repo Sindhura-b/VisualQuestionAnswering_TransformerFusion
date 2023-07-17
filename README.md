@@ -1,4 +1,33 @@
-**Fusing Single Modality Transformers for VQA**
+[heading-1](#heading-1 "Fusing Single Modality Transformers for VQA") **Fusing Single Modality Transformers for VQA**
+
+**Approach:**
+In this approach, we explored the use of existing vision and language transformer models to build a multimodal
+transformer that can perform the task of visual question answering. The pre-trained transformer architectures selected
+for obtaining language embeddings are BERT, RoBERTa and AlBERT and image embeddings are ViT and BEiT. The
+pre-trained models are obtained using APIs in the transformer package provided by huggingface. The problem
+of solving VQA is posed as a multi-class classification problem, where the entire vocabulary of answers in the dataset
+is treated as labels. 
+
+The vision and language transformers are fused using the late fusion technique and tuned for the task. The late fusion
+method is chosen because it often gives better performance because errors from multiple models are dealt with independently and hence the errors are uncorrelated. Late fusion
+layers have less complex modality interaction compared to early fusion techniques and hence are easier to train comparatively. We also explored various ways to perform late
+fusion and the ones chosen for implementation and comparative analysis include:
+Linear Fusion: This involves the concatenation of image
+and textual features and passing them through a linear layer
+followed by ReLU activation and dropout to generate an
+intermediate output.
+Multiplicative Fusion: This involves element-wise multiplication of image and textual features to generate an intermediate output. This method has no learnable parameters
+for multi-modality interaction (fusion layer) if the image
+and textual features are of the same size.
+Factorized Bi-Linear Pooling (MFB): Bilinear pooling supposedly captures richer pairwise interactions among
+multi-modal features[4]. It also does not pose any restriction on the dimensionality of image and text features. 
+Factorized Higher-Order Pooling (MFH): This involves simply cascading multiple MFB modules to capture
+more complex high-order interaction between multi-modal features[5]. For this project, we chose to use two MFB
+modules for the implementation of MFH. After the fusion layer, a classifier with a fully connected
+layer whose output dimensionality is equivalent to that of the answer space of the chosen dataset is added to the
+model. As a part of this model exploration, a comparative analysis of models with transformer and fusion layer variants is performed. 
+
+**Experiments and Results:**
 
 Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
