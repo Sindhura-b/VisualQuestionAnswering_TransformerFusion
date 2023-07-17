@@ -21,7 +21,7 @@ lower batch size and higher intermediate dimensionality are preferred.
 <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="200" />
 
 <p float="left">
-  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="100" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="100" /> 
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="50%" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="50%" /> 
 </p>
 
 For Experiment 2, we took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
