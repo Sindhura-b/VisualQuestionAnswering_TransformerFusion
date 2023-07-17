@@ -23,7 +23,7 @@ and textual features are of the same size.
 **Factorized Bi-Linear Pooling (MFB)**: Bilinear pooling supposedly captures richer pairwise interactions among
 multi-modal features[4]. It also does not pose any restriction on the dimensionality of image and text features. 
 **Factorized Higher-Order Pooling (MFH)**: This involves simply cascading multiple MFB modules to capture
-more complex high-order interaction between multi-modal features[5]. For this project, I chose to use two MFB
+more complex high-order interactions between multi-modal features[5]. For this project, I chose to use two MFB
 modules for the implementation of MFH. After the fusion layer, a classifier with a fully connected
 layer whose output dimensionality is equivalent to that of the answer space of the chosen dataset is added to the
 model. As a part of this model exploration, a comparative analysis of models with transformer and fusion layer variants is performed. 
