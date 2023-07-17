@@ -4,6 +4,8 @@ Single Modality Transformer Fusion Model is trained on the processed DAQUAR data
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
 strings and works well on one-word answers.
 
+Models are implemented in jupyter notebbok and training is performed in colab on NVIDIA Tesla T4 and NVIDIA Tesla P100 GPUs.
+
 For Experiment 1, the linear fusion technique is used with the intermediate dimension of 512, dropout of 0.5, and
 batch size of 32, which are considered as a decent set of parameters, since the output dimension of the transformer encoder is 768 and it is a common practice to start with a batch
 size of 32. Every language transformer (BERT, ALBERT, and RoBERTa) is paired with every other image transformer
@@ -43,3 +45,18 @@ dataset, even though they are designed to only capture single-modality interacti
 <p float="left">
   <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/inference%20results.png" width="100%" /> 
 </p>
+
+**References**
+
+1. Mateusz Malinowski. vqa-playground-pytorch.
+https://github.com/bupt-cist/
+vqa-playground-pytorch/blob/master/
+calculate_wups.py, 2015. 4
+
+2. tezansahu. Visual question answsering with transformers. https://github.com/tezansahu/
+VQA-With-Multimodal-Transformers/
+blob/main/notebooks/
+VisualQuestionAnsweringWithTransformers.
+ipynb. 3
+
+3. https://medium.com/@nithinraok_/visual-question-answering-attention-and-fusion-based-approaches-ebef62fa55aa
