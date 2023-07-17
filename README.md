@@ -17,10 +17,8 @@ prove that BEiT pairings are better since it is pre-trained in a self-supervised
 varying batch size and the hidden dimension of RoBERTaViT model with a simple linear fusion layer. Validation results shown in Fig 11 and 12 (see Appendix) suggest that
 lower batch size and higher intermediate dimensionality are preferred.
 
-![alt-text-1](https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png) ![alt-text-2](https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png)
-
 <p float="left">
-  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="30%" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="30%" /> 
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="40%" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="40%" /> 
 </p>
 
 For Experiment 2, we took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
