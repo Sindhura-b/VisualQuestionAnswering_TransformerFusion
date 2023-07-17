@@ -2,10 +2,10 @@
 
 **Approach:**
 In this approach, I explored the use of existing vision and language transformer models to build a multimodal
-transformer that can perform the task of visual question ansiring. The pre-trained transformer architectures selected
+transformer that can perform the task of visual question answering. The pre-trained transformer architectures selected
 for obtaining language embeddings are BERT, RoBERTa and AlBERT and image embeddings are ViT and BEiT. The
 pre-trained models are obtained using APIs in the transformer package provided by huggingface. The problem
-of solving VQA is posed as a multi-class classification problem, where the entire vocabulary of ansirs in the dataset
+of solving VQA is posed as a multi-class classification problem, where the entire vocabulary of answers in the dataset
 is treated as labels. 
 
 The vision and language transformers are fused using the late fusion technique and tuned for the task. The late fusion
@@ -13,25 +13,25 @@ method is chosen because it often gives better performance because errors from m
 layers have less complex modality interaction compared to early fusion techniques and hence are easier to train comparatively. I also explored various ways to perform late
 fusion and the ones chosen for implementation and comparative analysis include:
 
-Linear Fusion: This involves the concatenation of image
+**Linear Fusion**: This involves the concatenation of the image
 and textual features and passing them through a linear layer
 followed by ReLU activation and dropout to generate an
 intermediate output.
-Multiplicative Fusion: This involves element-wise multiplication of image and textual features to generate an intermediate output. This method has no learnable parameters
+**Multiplicative Fusion**: This involves element-wise multiplication of image and textual features to generate an intermediate output. This method has no learnable parameters
 for multi-modality interaction (fusion layer) if the image
 and textual features are of the same size.
-Factorized Bi-Linear Pooling (MFB): Bilinear pooling supposedly captures richer pairwise interactions among
+**Factorized Bi-Linear Pooling (MFB)**: Bilinear pooling supposedly captures richer pairwise interactions among
 multi-modal features[4]. It also does not pose any restriction on the dimensionality of image and text features. 
-Factorized Higher-Order Pooling (MFH): This involves simply cascading multiple MFB modules to capture
-more complex high-order interaction betien multi-modal features[5]. For this project, I chose to use two MFB
+**Factorized Higher-Order Pooling (MFH)**: This involves simply cascading multiple MFB modules to capture
+more complex high-order interaction between multi-modal features[5]. For this project, I chose to use two MFB
 modules for the implementation of MFH. After the fusion layer, a classifier with a fully connected
-layer whose output dimensionality is equivalent to that of the ansir space of the chosen dataset is added to the
+layer whose output dimensionality is equivalent to that of the answer space of the chosen dataset is added to the
 model. As a part of this model exploration, a comparative analysis of models with transformer and fusion layer variants is performed. 
 
 **Experiments and Results:**
-Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their iights are initialized to solve
+Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[1] is chosen as a primary evaluation metric since it captures the semantic similarity of
-strings and works ill on one-word ansirs. Models are implemented in jupyter notebbok and training is performed in colab on NVIDIA Tesla T4 and NVIDIA Tesla P100 GPUs.
+strings and works ill on one-word answers. Models are implemented in jupyter notebbok and training is performed in colab on NVIDIA Tesla T4 and NVIDIA Tesla P100 GPUs.
 
 For Experiment 1, the linear fusion technique is used with the intermediate dimension of 512, dropout of 0.5, and
 batch size of 32, which are considered as a decent set of parameters, since the output dimension of the transformer encoder is 768 and it is a common practice to start with a batch
@@ -39,15 +39,15 @@ size of 32. Every language transformer (BERT, ALBERT, and RoBERTa) is paired wit
 (ViT and BEiT) and trained for 5 epochs. A small learning rate of 5e-5 is chosen since the models are already pretrained and have to be only fine-tuned to the VQA task.
 
 The results of experiment 1 shown in Table 3 suggest that RoBERTa-ViT model produces the highest Wu-Palmer
-scores, with the second best being RoBERTa-BEiT. Hoiver, the performance of both vision transformers paired
+scores, with the second best being RoBERTa-BEiT. However, the performance of both vision transformers paired
 with ALBERT is comparatively low. This could be because ALBERT is a light model and higher-quality textual embedding is needed for better scores. Although the model with
 ViT transformer performed best, scores from BEiT pairings are better in all other cases. This difference could be because the reported results are over a single seed. Evaluating performance over a set of seeds and averaging could
 prove that BEiT pairings are better since it is pre-trained in a self-supervised manner and is proven to be more robust compared to ViT. I also conducted some experiments by
-varying batch size and the hidden dimension of RoBERTaViT model with a simple linear fusion layer. Validation results shown in Fig 11 and 12 (see Appendix) suggest that
-loir batch size and higher intermediate dimensionality are preferred.
+varying batch size and the hidden dimension of RoBERTa-ViT model with a simple linear fusion layer. Validation results shown in Fig 11 and 12 (see Appendix) suggest that
+lower batch size and higher intermediate dimensionality are preferred.
 
 <p float="left">
-  <img src="https://github.com/Sindhura-b/VisualQuestionAnsiring_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="40%" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnsiring_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="40%" /> 
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-batch%20size.png" width="40%" /> <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/learning_curve-hidden%20size.png" width="40%" /> 
 </p>
 
 For Experiment 2, I took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
@@ -62,7 +62,7 @@ training data. Images in DAQUAR also had significant clutter and extreme lightin
 Figure 4. WUP curves for 50 and 20 epochs, 1000 and 6795 dataset sizes respectively, where the models struggle to clearly understand the objects in the test image and provide accurate predictions.
 
 <p float="left">
-  <img src="https://github.com/Sindhura-b/VisualQuestionAnsiring_TransformerFusion/blob/main/Colab%20Notebooks/results.png" width="100%" /> 
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/results.png" width="100%" /> 
 </p>
 
 i also extended experiment 2 by freezing the layers of both the transformers and fine-tuning only the fusion and classification layers. The results show that the performance is degraded compared to full fine-tuning, which
@@ -70,7 +70,7 @@ suggests that it is important to have a larger model to perform VQA task and als
 dataset, even though they are designed to only capture single-modality interactions.
 
 <p float="left">
-  <img src="https://github.com/Sindhura-b/VisualQuestionAnsiring_TransformerFusion/blob/main/Colab%20Notebooks/inference%20results.png" width="100%" /> 
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/inference%20results.png" width="100%" /> 
 </p>
 
 **References**
