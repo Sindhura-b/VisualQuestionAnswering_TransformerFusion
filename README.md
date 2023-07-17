@@ -1,17 +1,14 @@
 Fusing Single Modality Transformers for VQA:
 
-Single Modality Transformer Fusion Model is trained
-on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
-image and text-specific tasks. The Wu-Palmer similarity
-score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
+Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
+image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
 strings and works well on one-word answers.
-For Experiment 1, the linear fusion technique is used
-with the intermediate dimension of 512, dropout of 0.5, and
+
+For Experiment 1, the linear fusion technique is used with the intermediate dimension of 512, dropout of 0.5, and
 batch size of 32, which are considered as a decent set of parameters, since the output dimension of the transformer encoder is 768 and it is a common practice to start with a batch
-size of 32. Every language transformer (BERT, ALBERT,
-4
-and RoBERTa) is paired with every other image transformer
+size of 32. Every language transformer (BERT, ALBERT, and RoBERTa) is paired with every other image transformer
 (ViT and BEiT) and trained for 5 epochs. A small learning rate of 5e-5 is chosen since the models are already pretrained and have to be only fine-tuned to the VQA task.
+
 The results of experiment 1 shown in Table 3 suggest
 that RoBERTa-ViT model produces the highest Wu-Palmer
 scores, with the second best being RoBERTa-BEiT. However, the performance of both vision transformers paired
