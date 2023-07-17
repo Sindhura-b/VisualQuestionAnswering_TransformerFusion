@@ -39,3 +39,7 @@ Figure 4. WUP curves for 50 and 20 epochs, 1000 and 6795 dataset sizes respectiv
 We also extended experiment 2 by freezing the layers of both the transformers and fine-tuning only the fusion and classification layers. The results show that the performance is degraded compared to full fine-tuning, which
 suggests that it is important to have a larger model to perform VQA task and also that earlier layers of the network form the baseline in learning the VQA task on DAQUAR
 dataset, even though they are designed to only capture single-modality interactions.
+
+<p float="left">
+  <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/inference%20results.png" width="100%" /> 
+</p>
