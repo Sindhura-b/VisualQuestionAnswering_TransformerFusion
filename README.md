@@ -1,4 +1,4 @@
-[heading-1](#heading-1 "Fusing Single Modality Transformers for VQA") **Fusing Single Modality Transformers for VQA**
+**Fusing Single Modality Transformers for VQA**
 
 **Approach:**
 In this approach, we explored the use of existing vision and language transformer models to build a multimodal
@@ -28,7 +28,6 @@ layer whose output dimensionality is equivalent to that of the answer space of t
 model. As a part of this model exploration, a comparative analysis of models with transformer and fusion layer variants is performed. 
 
 **Experiments and Results:**
-
 Single Modality Transformer Fusion Model is trained on the processed DAQUAR dataset. As pre-trained transformer models are used, their weights are initialized to solve
 image and text-specific tasks. The Wu-Palmer similarity score code by Mateusz et al.[9] is chosen as a primary evaluation metric since it captures the semantic similarity of
 strings and works well on one-word answers.
