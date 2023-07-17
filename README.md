@@ -17,32 +17,17 @@ prove that BEiT pairings are better since it is pre-trained in a self-supervised
 varying batch size and the hidden dimension of RoBERTaViT model with a simple linear fusion layer. Validation results shown in Fig 11 and 12 (see Appendix) suggest that
 lower batch size and higher intermediate dimensionality are preferred.
 
-For Experiment 2, we took the best-performing model
-from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 interesting to notice that even though MFB and MFH
-layers are selectively designed to capture rich multi-modal
-interactions, they performed poorly in comparison to multiplicative fusion and simple linear fusion techniques for the
-selected model and dataset. Initially, this behavior was attributed to slow learning by MFB and MFH modules that
-resulted in not being able to achieve better accuracy in 5
-epochs. So, epochs were increased to 10 and the results did
-not improve much. On increasing epochs, multiplicative fusion still performed comparatively well up to a certain extent and both models showed no improvement in validation
-scores towards the end indicating that learning has stopped.
-This behavior could be attributed to both the structure of the
-fusion layer and the dataset. Multiplicative fusion is still
-shallow and does not capture deeper multi-modal interactions as every element in image encoding interacts with only
-one other element in text encoding, MFB technique uses
-sum-pooling to capture the interaction and there aren’t any
-direct parameters to learn multi-modal interaction. The latest VQA models used co-attention or D-depth transformer
-layers[7] to place higher importance on multi-modality interaction for better performance. Also, the dataset size used
-is very small as it has only 16 examples per class in the
+For Experiment 2, we took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
+layers are selectively designed to capture rich multi-modal interactions, they performed poorly in comparison to multiplicative fusion and simple linear fusion techniques for the
+selected model and dataset. Initially, this behavior was attributed to slow learning by MFB and MFH modules that resulted in not being able to achieve better accuracy in 5
+epochs. So, epochs were increased to 10 and the results did not improve much. On increasing epochs, multiplicative fusion still performed comparatively well up to a certain extent and both models showed no improvement in validation
+scores towards the end indicating that learning has stopped. This behavior could be attributed to both the structure of the fusion layer and the dataset. Multiplicative fusion is still
+shallow and does not capture deeper multi-modal interactions as every element in image encoding interacts with only one other element in text encoding, MFB technique uses
+sum-pooling to capture the interaction and there aren’t any direct parameters to learn multi-modal interaction. The latest VQA models used co-attention or D-depth transformer
+layers[7] to place higher importance on multi-modality interaction for better performance. Also, the dataset size used is very small as it has only 16 examples per class in the
 training data. Images in DAQUAR also had significant clutter and extreme lighting conditions and even human evaluation studies produced only 50 accuracy. This is also reflected in the results of model inference shown in Fig. 10
-Figure 4. WUP curves for 50 and 20 epochs, 1000 and 6795 dataset
-sizes respectively
-(see Appendix), where the models struggle to clearly understand the objects in the test image and provide accurate
-predictions.
-We also extended experiment 2 by freezing the layers
-of both the transformers and fine-tuning only the fusion
-and classification layers. The results show that the performance is degraded compared to full fine-tuning, which
-suggests that it is important to have a larger model to perform VQA task and also that earlier layers of the network
-form the baseline in learning the VQA task on DAQUAR
-dataset, even though they are designed to only capture
-single-modality interactions
+Figure 4. WUP curves for 50 and 20 epochs, 1000 and 6795 dataset sizes respectively, where the models struggle to clearly understand the objects in the test image and provide accurate predictions.
+
+We also extended experiment 2 by freezing the layers of both the transformers and fine-tuning only the fusion and classification layers. The results show that the performance is degraded compared to full fine-tuning, which
+suggests that it is important to have a larger model to perform VQA task and also that earlier layers of the network form the baseline in learning the VQA task on DAQUAR
+dataset, even though they are designed to only capture single-modality interactions.
