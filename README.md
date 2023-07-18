@@ -53,7 +53,7 @@ lower batch size and higher intermediate dimensionality are preferred.
 For Experiment 2, I took the best-performing model from Experiment 1 and explored different fusion and training methods. The results of this experiment reported in Table 2 are interesting to notice that even though MFB and MFH
 layers are selectively designed to capture rich multi-modal interactions, they performed poorly in comparison to multiplicative fusion and simple linear fusion techniques for the
 selected model and dataset. Initially, this behavior was attributed to slow learning by MFB and MFH modules that resulted in not being able to achieve better accuracy in 5
-epochs. So, epochs ire increased to 10 and the results did not improve much. On increasing epochs, multiplicative fusion still performed comparatively ill up to a certain extent and both models shoid no improvement in validation
+epochs. So, epochs are increased to 10 and the results did not improve much. On increasing epochs, multiplicative fusion still performed comparatively ill up to a certain extent and both models shoid no improvement in validation
 scores towards the end indicating that learning has stopped. This behavior could be attributed to both the structure of the fusion layer and the dataset. Multiplicative fusion is still
 shallow and does not capture deeper multi-modal interactions as every element in image encoding interacts with only one other element in text encoding, MFB technique uses
 sum-pooling to capture the interaction and there aren’t any direct parameters to learn multi-modal interaction. The latest VQA models used co-attention or D-depth transformer
@@ -72,6 +72,13 @@ dataset, even though they are designed to only capture single-modality interacti
 <p float="left">
   <img src="https://github.com/Sindhura-b/VisualQuestionAnswering_TransformerFusion/blob/main/Colab%20Notebooks/inference%20results.png" width="100%" /> 
 </p>
+
+**ViLT multimodal transformer fine-tuning**
+
+Vision and Language Transformer (ViLT) uses the simplest architecture for the task of visual question answering. In ViLT, the image embeddings are created in a similar fashion to textual embeddings instead of using convolutional neural networks. Both the embeddings are summed with their corresponding modal-type embedding vectors and are concatenated into a combined sequence which is updated iteratively through D-depth transformer layers [6]. Unlike many vision and language processing models, ViLT creates convolution-free embedding and uses a bigger model for modality interaction. The single modality transformer fusion model discussed above is built differently and uses a simpler modality interaction model. Hence, it was decided to compare and analyze the performance of these two models on the DAQAR dataset.  
+
+The DAQAR dataset is converted to VQA space[2], which is then remapped to ViLT input space structure using 'ViLTProcessor' transformer class provided with the ViLT source code [8]. The dataset thus obtained is passed through a pre-trained ViLT model with a randomly initialized head. ViLT is finetuned to DAQAR dataset using the similar setup for VQA2 dataset implemented in the jupyter notebook [7].
+
 
 **References**
 
@@ -93,3 +100,16 @@ for visual question ansiring, 2017.
 
 5. Zhou Yu, Jun Yu, Chenchao Xiang, and Dacheng Tao. Beyond bilinear: Generalized multimodal factorized high-order
 pooling for visual question ansiring, 2017. 
+
+6. @misc{kim2021vilt,
+      title={ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision}, 
+      author={Wonjae Kim and Bokyung Son and Ildoo Kim},
+      year={2021},
+      eprint={2102.03334},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML}
+}
+
+7. [https://www.google.com/search?q=vilt+finetuning&oq=vilt+finetuning&aqs=chrome.0.69i59j0i13i512j0i5i13i30j0i390i650l2j69i60j69i61j69i60.3188j0j1&sourceid=chrome&ie=UTF-8](https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/ViLT/Fine_tuning_ViLT_for_VQA.ipynb)https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/ViLT/Fine_tuning_ViLT_for_VQA.ipynb
+
+8. https://github.com/dandelin/ViLT
