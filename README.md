@@ -77,9 +77,10 @@ dataset, even though they are designed to only capture single-modality interacti
 
 **Approach**: Vision and Language Transformer (ViLT) uses the simplest architecture for the task of visual question answering. In ViLT, the image embeddings are created in a similar fashion to textual embeddings instead of using convolutional neural networks. Both the embeddings are summed with their corresponding modal-type embedding vectors and are concatenated into a combined sequence which is updated iteratively through D-depth transformer layers [6]. Unlike many vision and language processing models, ViLT creates convolution-free embedding and uses a bigger model for modality interaction. The single modality transformer fusion model discussed above is built differently and uses a simpler modality interaction model. Hence, it was decided to compare and analyze the performance of these two models on the DAQAR dataset.  
 
-The DAQAR dataset is converted to VQA space[2], which is then remapped to ViLT input space structure using 'ViLTProcessor' transformer class provided with the ViLT source code [8]. The dataset thus obtained is passed through a pre-trained ViLT model with a randomly initialized head. ViLT is finetuned to DAQAR dataset using the similar setup for VQA2 dataset implemented in the jupyter notebook [7].
+The DAQAR dataset is split into training and validation sets (80-20 split). The DAQAR dataset is converted to VQA space[2], which is then remapped to ViLT input space structure using 'ViLTProcessor' transformer class provided with the ViLT source code [8]. The dataset thus obtained is passed through a pre-trained ViLT model with a randomly initialized head. ViLT is finetuned to DAQAR dataset using the similar setup for VQA2 dataset implemented in the jupyter notebook [7]. A score of '1' is given to the answer corresponding to each question, since DAQAR has only single-answer for every question.
 
 **Experiments and Results**: 
+DAQAR data set is split into training and validation sets (80-20 split). Since the 
 
 **References**
 
