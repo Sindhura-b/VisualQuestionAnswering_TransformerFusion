@@ -77,10 +77,15 @@ dataset, even though they are designed to only capture single-modality interacti
 
 **Approach**: Vision and Language Transformer (ViLT) uses the simplest architecture for the task of visual question answering. In ViLT, the image embeddings are created in a similar fashion to textual embeddings instead of using convolutional neural networks. Both the embeddings are summed with their corresponding modal-type embedding vectors and are concatenated into a combined sequence which is updated iteratively through D-depth transformer layers [6]. Unlike many vision and language processing models, ViLT creates convolution-free embedding and uses a bigger model for modality interaction. The single modality transformer fusion model discussed above is built differently and uses a simpler modality interaction model. Hence, it was decided to compare and analyze the performance of these two models on the DAQAR dataset.  
 
-The DAQAR dataset is split into training and validation sets (80-20 split). The DAQAR dataset is converted to VQA space[2], which is then remapped to ViLT input space structure using 'ViLTProcessor' transformer class provided with the ViLT source code [8]. The dataset thus obtained is passed through a pre-trained ViLT model with a randomly initialized head. ViLT is finetuned to DAQAR dataset using the similar setup for VQA2 dataset implemented in the jupyter notebook [7]. A score of '1' is given to the answer corresponding to each question, since DAQAR has only single-answer for every question.
+The DAQAR dataset is split into training and validation sets (60-40 split). The DAQAR dataset is converted to VQA space[2], which is then remapped to ViLT input space structure using 'ViLTProcessor' transformer class provided with the ViLT source code [8]. The dataset thus obtained is passed through a pre-trained ViLT model with a randomly initialized head. ViLT is finetuned to DAQAR dataset using the similar setup for VQA2 dataset implemented in the jupyter notebook [7]. A score of '1' is given to the answer corresponding to each question, since DAQAR has only single-answer for every question.
 
 **Experiments and Results**: 
-DAQAR data set is split into training and validation sets (80-20 split). Since the 
+
+The data is split into batches of size 4 and the model is trained on the training dataset for 10 epochs. Training and evaluation results indicate that this model is much easier to train as the model was able to quickly reduce the loss (from the loss curve) and better fit the training dataset, which is reflected in the training dataset achieving significantly better average and best Wu-Palmer scores compared to single modality transformer fusion model. However, the Wu-Palmer scores of the evaluation dataset did not show significant improvement, with the best value being 0.27 on training for 10 epochs. Lowering the learning rate and increasing the training dataset size could bring some improvement in the Wu-Palmer scores.
+
+Wu-Palmer evaluation scores of both models are not significantly different even though both models followed different approaches to model the modality interaction on DAQAR dataset. This could be because dataset size is too small for model training and are able to easily overfit. Also, the images in DAQAR dataset are not clear and are taken in low-lighting conditions, which made it difficult for the model to differentiate the objects in the image and come up with the right answer.
+
+This work can be further extended by evaluating the performance of single modality fusion transformer on a bigger VQA dataset. Hyper-parameter tuning of ViLT model can also be explored.
 
 **References**
 
@@ -89,7 +94,7 @@ https://github.com/bupt-cist/
 vqa-playground-pytorch/blob/master/
 calculate_wups.py, 2015. 4
 
-2. tezansahu. Visual question answsering with transformers. https://github.com/tezansahu/
+2. tezansahu. Visual question answering with transformers. https://github.com/tezansahu/
 VQA-With-Multimodal-Transformers/
 blob/main/notebooks/
 VisualQuestionAnsiringWithTransformers.
