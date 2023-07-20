@@ -17,12 +17,15 @@ fusion and the ones chosen for implementation and comparative analysis include:
 and textual features and passing them through a linear layer
 followed by ReLU activation and dropout to generate an
 intermediate output.
+
 **Multiplicative Fusion**: This involves element-wise multiplication of image and textual features to generate an intermediate output. This method has no learnable parameters
 for multi-modality interaction (fusion layer) if the image
 and textual features are of the same size.
+
 **Factorized Bi-Linear Pooling (MFB)**: Bilinear pooling supposedly captures richer pairwise interactions among
 multi-modal features[4]. It also does not pose any restriction on the dimensionality of image and text features. 
 **Factorized Higher-Order Pooling (MFH)**: This involves simply cascading multiple MFB modules to capture
+
 more complex high-order interactions between multi-modal features[5]. For this project, I chose to use two MFB
 modules for the implementation of MFH. After the fusion layer, a classifier with a fully connected
 layer whose output dimensionality is equivalent to that of the answer space of the chosen dataset is added to the
